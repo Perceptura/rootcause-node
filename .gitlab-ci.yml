@@ -1,0 +1,40 @@
+stages:
+  - generate
+  - build
+  - publish
+
+generate:
+  stage: generate
+  image: node:20-slim
+  script:
+    - npm install
+    - npx @hey-api/openapi-ts -i $OPENAPI_SPEC_URL -o src/generated -c @hey-api/client-fetch
+  artifacts:
+    paths:
+      - src/generated/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+
+build:
+  stage: build
+  image: node:20-slim
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG =~ /^[0-9]+\.[0-9]+\.[0-9]+$/
+
+publish:
+  stage: publish
+  image: node:20-slim
+  script:
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+    - npm publish --access public
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^[0-9]+\.[0-9]+\.[0-9]+$/
+      when: manual

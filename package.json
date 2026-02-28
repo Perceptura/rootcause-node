@@ -1,0 +1,45 @@
+{
+  "name": "@rootcause/sdk",
+  "version": "0.1.0",
+  "description": "Official TypeScript/JavaScript SDK for the RootCause platform API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "generate": "openapi-ts -i openapi.json -o src/generated -c @hey-api/client-fetch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "rootcause",
+    "causal-inference",
+    "digital-twin",
+    "sdk",
+    "api-client"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/perceptura/sdks/rootcause-node.git"
+  },
+  "homepage": "https://rootcause.ai",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@hey-api/client-fetch": "^0.8.0"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.93.0",
+    "typescript": "^5.7.0"
+  }
+}
