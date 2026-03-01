@@ -1,6 +1,12 @@
 # @rootcause/sdk
 
-Official TypeScript/JavaScript SDK for the [RootCause](https://rootcause.ai) platform API.
+![RootCause causal discovery](https://rootcause.ai/img/platform/causal-discovery.png)
+
+## About RootCause
+
+[RootCause](https://rootcause.ai) is a causal AI platform: you bring your data, define or discover causal structure, and run what-if analyses and simulations. Build digital twins, explore causal graphs, and query outcomes via the UI or the [Model Context Protocol](https://modelcontextprotocol.io). Full docs: [docs.rootcause.ai](https://docs.rootcause.ai).
+
+This package is the official TypeScript/JavaScript SDK for the RootCause platform API.
 
 ## Installation
 
@@ -33,11 +39,11 @@ const { data: sim } = await rc.simulations.run({
 
 ## Features
 
-- Fully typed — generated from the RootCause OpenAPI spec
-- Workspace-scoped — set a default workspace or pass one per call
-- Job polling — built-in helpers for long-running operations
-- Auto-pagination — async iterators for paginated endpoints
-- Tree-shakeable — only import what you use
+- Fully typed: generated from the RootCause OpenAPI spec
+- Workspace-scoped: set a default workspace or pass one per call
+- Job polling: built-in helpers for long-running operations
+- Auto-pagination: async iterators for paginated endpoints
+- Tree-shakeable: only import what you use
 
 ## Configuration
 
